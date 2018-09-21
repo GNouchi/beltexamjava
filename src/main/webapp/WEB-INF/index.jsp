@@ -40,8 +40,6 @@
 <a href="/">Login</a>
 <a href="/tasks">Tasks Dashboard</a>
 <a href="/tasks/new">Create</a>
-<a href="/tasks/1">Show/Delete</a>
-<a href="/tasks/1/edit">Edit</a>
 <a href="/logout">Logout</a>
 
 

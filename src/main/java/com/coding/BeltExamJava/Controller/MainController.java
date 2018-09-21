@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.coding.BeltExamJava.Models.Task;
 import com.coding.BeltExamJava.Models.User;
@@ -131,12 +132,14 @@ public class MainController {
     }
 //	new task
 	@RequestMapping(value= "/tasks/new", method=RequestMethod.POST)
-	public String newTask(@Valid @ModelAttribute("task") Task task, BindingResult result, HttpSession session) {
+	public String newTask(@Valid @ModelAttribute("task") Task task, BindingResult result, HttpSession session, RedirectAttributes ra) {
 		if(session.getAttribute("userid")==null) {
-			return "redirect:/";
+			ra.addFlashAttribute("error", "Please enter a name ");
+			return "redirect:/tasks/new";
 		}
         if(result.hasErrors()) {
-        	return "newtask";
+			ra.addFlashAttribute("error", "Please enter a name ");
+			return "redirect:/tasks/new";
         }
         Long userid = (Long) session.getAttribute("userid");
         User creator = userService.findUserById(userid);
@@ -180,6 +183,7 @@ public class MainController {
 		if(task.getAssignee().getId()== userid) {
 			mainService.deleteTask(task);
 		}
+		System.out.println("bool "+(task.getAssignee().getId()== userid));
 		System.out.println("redirect nothing hit");
 		return "redirect:/"; 
 	}

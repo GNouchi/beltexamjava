@@ -22,13 +22,11 @@
 <a href="/">Login</a>
 <a href="/tasks">Tasks Dashboard</a>
 <a href="/tasks/new">Create</a>
-<a href="/tasks/1">Show/Delete</a>
-<a href="/tasks/1/edit">Edit</a>
 <a href="/logout">Logout</a>
 
 <h1>This is tasks/new</h1>
 <h1>Create a new task</h1>
-
+<p>${error}</p>
 <div class="master">
 <div class="left">
 	<p>Task </p>
