@@ -50,7 +50,7 @@ public class MainController {
 		if(session.getAttribute("userid")!=null) {
 			Long userid =  (Long) session.getAttribute("userid");
 			model.addAttribute("user", userService.findUserById(userid));
-			if ((Integer) session.getAttribute("order")==null || (Integer) session.getAttribute("order") ==0) {
+			if ((Integer) session.getAttribute("order") == null || (Integer) session.getAttribute("order") ==0) {
 				session.setAttribute("order", 0);
 				model.addAttribute("tasks", mainService.findAllOrderByHighest());				
 			}
